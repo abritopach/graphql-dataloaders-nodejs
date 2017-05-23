@@ -1,0 +1,23 @@
+{
+    "plugins": ["node", "smells"],
+    "extends": ["eslint:recommended", "plugin:node/recommended"],
+    "env": {
+        "node": true,
+        "es6": true,
+        "mongo": true
+    },
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "rules": {
+        "node/exports-style": ["error", "module.exports"],
+        "node/no-unpublished-bin": "error",
+        "node/process-exit-as-throw": "error",
+        "smells/no-switch": 1,
+        "smells/no-complex-switch-case": 1,
+        "smells/no-setinterval": 1,
+        "smells/no-this-assign": 1,
+        "no-console": "off",
+        "node/no-unsupported-features": "off"
+    }
+}

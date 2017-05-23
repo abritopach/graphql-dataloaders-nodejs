@@ -1,0 +1,95 @@
+{
+  "_dependencies": {
+    "faker": "faker"
+  },
+  "users": {
+    "_model": "User",
+    "usera": {
+      "firstName": "=faker.name.firstName()",
+      "lastName": "=faker.name.lastName()",
+      "email": "=faker.internet.email()"
+    },
+    "userb": {
+      "firstName": "=faker.name.firstName()",
+      "lastName": "=faker.name.lastName()",
+      "email": "=faker.internet.email()",
+      "contacts": ["->users.usera"]
+    },
+    "userc": {
+      "firstName": "=faker.name.firstName()",
+      "lastName": "=faker.name.lastName()",
+      "email": "=faker.internet.email()",
+      "contacts": ["->users.usera", "->users.userb"]
+    }
+  },
+  "posts": {
+    "_model": "Post",
+    "posta": {
+      "title": "=faker.lorem.sentence()",
+      "content": "=faker.lorem.paragraphs()",
+      "category": "=faker.random.word()",
+      "author": "->users.usera"
+    },
+    "postb": {
+      "title": "=faker.lorem.sentence()",
+      "content": "=faker.lorem.paragraphs()",
+      "category": "=faker.random.word()",
+      "author": "->users.usera"
+    },
+    "postc": {
+      "title": "=faker.lorem.sentence()",
+      "content": "=faker.lorem.paragraphs()",
+      "category": "=faker.random.word()",
+      "author": "->users.userb"
+    },
+    "postd": {
+      "title": "=faker.lorem.sentence()",
+      "content": "=faker.lorem.paragraphs()",
+      "category": "=faker.random.word()",
+      "author": "->users.userc"
+    }
+  },
+  "comments": {
+    "_model": "Comment",
+    "commenta": {
+      "comment": "=faker.lorem.paragraphs()",
+      "author": "->users.usera",
+      "post": "->posts.posta",
+      "likes": ["->users.userb"]
+    },
+    "commentb": {
+      "comment": "=faker.lorem.paragraphs()",
+      "author": "->users.usera",
+      "post": "->posts.posta"
+    },
+    "commentc": {
+      "comment": "=faker.lorem.paragraphs()",
+      "author": "->users.usera",
+      "post": "->posts.postb",
+      "likes": ["->users.userb", "->users.userc"]
+    },
+    "commentd": {
+      "comment": "=faker.lorem.paragraphs()",
+      "author": "->users.usera",
+      "post": "->posts.postb"
+    },
+    "commente": {
+      "comment": "=faker.lorem.paragraphs()",
+      "author": "->users.userb",
+      "post": "->posts.postb",
+      "likes": ["->users.usera"]
+    },
+    "commentf": {
+      "comment": "=faker.lorem.paragraphs()",
+      "author": "->users.userb",
+      "post": "->posts.posta",
+      "likes": ["->users.usera"]
+    },
+    "commentg": {
+      "comment": "=faker.lorem.paragraphs()",
+      "author": "->users.userc",
+      "post": "->posts.postc",
+      "likes": ["->users.usera", "->users.userb"]
+    }
+  }
+}
